@@ -16,7 +16,7 @@ __create-react-app__
 	npm start // ejecuta la aplicacion de reactjs
 ```
 __vite@latest__
-````
+```
 	npm i -g vite@latest // instalacion global
 	npx init vite <name> // creamos el proyecto con vite
 	cd <name> // abre la carpeta creada con vite
@@ -24,3 +24,9 @@ __vite@latest__
 	npm run dev // ejecuta la aplicacion de reactjs
 ```
 
+## Componentes
+
+Corresponden a partes dentro de nuestra aplicacion que van a repetirse, poseen _atributos (props)_ y tambien _estados (state)_. Si bien, originalmente, los mismos se puedian declarar mediante clases, a partir de la version __16__ podemos declararlos mediante funciones estandar y funciones flecha.
+
+* __PROPS__: Son atributos de los componentes, pueden ser heredados por sus elementos padres y son inmutables.
+* __STATE__: Son atributos cuyo valor puede variar en base a algun evento, se declaran en el componente que afectan y pueden ser enviados a sus elementos contenedores.
