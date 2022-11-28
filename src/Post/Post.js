@@ -21,33 +21,34 @@ class Post extends Component{
     }
 
     render(){
+        const { title, val, content } = this.props;
+        const text = ['like', 'love', 'enjoy'];
+        const color = ['success', 'danger', 'warning']
         return(
-            <div className='bg-light bg-gradient p-3'>
-                <p>soy una publicacion</p>
-                <Button 
-                    className="mx-1 btn btn-outline-success"
-                    value={this.props.val[0]} 
-                    text="like" />
-                <Button 
-                    className="mx-1 btn btn-outline-danger" 
-                    value={this.props.val[1]}
-                    text="love" />
-                <Button
-                    className="mx-1 btn btn-outline-warning"
-                    value={this.props.val[2]}
-                    text="enjoy"
-                />
-                <button 
-                    className="mx-1 btn btn-outline-primary" 
-                    onClick={ this.changeState }>
-                    comentar
-                </button>
-                <textarea style={ 
-                    this.state.hide ? 
-                    { display: 'none' } : 
-                    { display: 'block' } 
-                }>
-                </textarea>
+            <div className='card'>
+                <h2 className='card-header'>{ title }</h2>
+                <p className='card-body'>{ content }</p>
+                <footer className='card-footer'>
+                    { val.map( (n,i) =>
+                        <Button key={'button-'+ i }
+                            className={"mx-1 btn btn-outline-"+color[i]}
+                            value={n}
+                            text={text[i]}/>
+                    ) }
+                    <button 
+                        className="mx-1 btn btn-outline-primary" 
+                        onClick={ this.changeState }>
+                        comentar
+                    </button>
+                    <textarea 
+                        className='form-control mt-2'
+                        style={ 
+                        this.state.hide ? 
+                        { display: 'none' } : 
+                        { display: 'block' } 
+                    }>
+                    </textarea>
+                </footer>
             </div>
         )
     }
