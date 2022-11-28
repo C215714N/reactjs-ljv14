@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import Button from './Button';
 
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+
 class Post extends Component{
     constructor(props){
         super(props);
@@ -20,11 +22,26 @@ class Post extends Component{
 
     render(){
         return(
-            <div>
+            <div className='bg-light bg-gradient p-3'>
                 <p>soy una publicacion</p>
-                <Button text="like" />
-                <Button text="love" />
-                <button onClick={ this.changeState }>comentar</button>
+                <Button 
+                    className="mx-1 btn btn-outline-success"
+                    value={this.props.val[0]} 
+                    text="like" />
+                <Button 
+                    className="mx-1 btn btn-outline-danger" 
+                    value={this.props.val[1]}
+                    text="love" />
+                <Button
+                    className="mx-1 btn btn-outline-warning"
+                    value={this.props.val[2]}
+                    text="enjoy"
+                />
+                <button 
+                    className="mx-1 btn btn-outline-primary" 
+                    onClick={ this.changeState }>
+                    comentar
+                </button>
                 <textarea style={ 
                     this.state.hide ? 
                     { display: 'none' } : 
