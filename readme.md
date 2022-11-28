@@ -11,9 +11,16 @@ Esto se debe a que necesitamos configurar la compilacion del proyecto con herram
 __create-react-app__
 ```
 	npm i -g create-react-app // instalacion global
-	npx create-react-app <name> // creamos un proyecto con CRP
-	cd <name> // abrimos la carpeta creada con CRP
-	npm start // ejectura la aplicacion de reactjs
+	npx create-react-app <name> // crea un proyecto con CRP
+	cd <name> // abre la carpeta creada con CRP
+	npm start // ejecuta la aplicacion de reactjs
 ```
-
+__vite@latest__
+````
+	npm i -g vite@latest // instalacion global
+	npx init vite <name> // creamos el proyecto con vite
+	cd <name> // abre la carpeta creada con vite
+	npm install // instala los modulos de NodeJS
+	npm run dev // ejecuta la aplicacion de reactjs
+```
 
