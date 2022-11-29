@@ -6,6 +6,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 class Post extends Component{
     constructor(props){
         super(props);
+        /* Vinculamos el metodo con su invocacion */
         this.changeState = this.changeState.bind(this);
     }
     state = {
@@ -17,7 +18,6 @@ class Post extends Component{
             this.state.hide = !this.state.hide; 
         */
         this.setState({ hide: !this.state.hide });
-        console.log(this.state.hide);
     }
 
     render(){
@@ -25,18 +25,18 @@ class Post extends Component{
         const text = ['like', 'love', 'enjoy'];
         const color = ['success', 'danger', 'warning']
         return(
-            <div className='card'>
+            <article className='card m-2 col-md p-0'>
                 <h2 className='card-header'>{ title }</h2>
                 <p className='card-body'>{ content }</p>
-                <footer className='card-footer'>
+                <footer className='card-footer d-flex flex-wrap p-4 gap-2'>
                     { val.map( (n,i) =>
                         <Button key={'button-'+ i }
-                            className={"mx-1 btn btn-outline-"+color[i]}
+                            className={"col btn btn-outline-"+color[i]}
                             value={n}
                             text={text[i]}/>
                     ) }
                     <button 
-                        className="mx-1 btn btn-outline-primary" 
+                        className="col btn btn-outline-primary" 
                         onClick={ this.changeState }>
                         comentar
                     </button>
@@ -49,7 +49,7 @@ class Post extends Component{
                     }>
                     </textarea>
                 </footer>
-            </div>
+            </article>
         )
     }
 }
