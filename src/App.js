@@ -1,6 +1,7 @@
 import PostBox from './Post/PostBox';
 import Profile from './Profile/Profile';
 import Nav from './NavBar/Nav';
+import Error from './Error';
 
 import './App.css';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
@@ -48,8 +49,7 @@ function App() {
         <Route path='/profile'
           element={<Profile />} >
         </Route>
-        <Route>
-
+        <Route exact path='*' element={<Error code="404" />}>
         </Route>
       </Routes>
     </BrowserRouter>
