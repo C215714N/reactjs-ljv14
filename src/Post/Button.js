@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Button = (props) => {
-    const { className, value, text } = props;
+    const { gral, selected, regular, value, text } = props;
     /* Hooks: declaracion que facilita la implementacion de estado
         state, method
     */
@@ -14,7 +14,8 @@ const Button = (props) => {
     }
 
     return(
-        <button className={ className } onClick={ setReaction }>
+        <button className={gral + (state ? selected : regular) } 
+            onClick={ setReaction }>
             {number} { text }
         </button>
 ) }

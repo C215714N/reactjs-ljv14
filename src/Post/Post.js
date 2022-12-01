@@ -29,7 +29,9 @@ class Post extends Component{
                 <footer className='card-footer'>
                     { val.map( (n,i) =>
                         <Button key={'button-'+ i }
-                            className={"mx-1 btn btn-outline-"+color[i]}
+                            gral="mx-1 btn "
+                            regular={"btn-outline-"+color[i]}
+                            selected={"btn-"+color[i]}
                             value={n}
                             text={text[i]}/>
                     ) }
