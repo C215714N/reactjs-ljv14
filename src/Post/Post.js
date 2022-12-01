@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import Button from './Button';
 
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Post extends Component{
     constructor(props){
@@ -21,9 +21,7 @@ class Post extends Component{
     }
 
     render(){
-        const { title, val, content } = this.props;
-        const text = ['like', 'love', 'enjoy'];
-        const color = ['success', 'danger', 'warning']
+        const { title, val, content, text, color } = this.props;
         return(
             <div className='card'>
                 <h2 className='card-header'>{ title }</h2>
