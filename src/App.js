@@ -1,8 +1,9 @@
 import PostBox from './Post/PostBox';
 import Profile from './Profile/Profile';
+import Nav from './NavBar/Nav';
 
 import './App.css';
-import { BrowserRouter, Routes, NavLink, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   const posts = [
@@ -27,25 +28,19 @@ function App() {
       val:[40,120,90]
     }
   ]
+  const navigation = [
+    {id: 'ajsldks', to: '/home', text: 'Inicio'},
+    {id: 'asildld', to: '/posts', text: 'Publicaciones'},
+    {id: 'aasdklf', to: '/profile', text: 'Perfil'},
+    {id: 'opqewpñ', to: '/settings', text: 'Configuracion'},
+  ]
   const text = ['like', 'love', 'enjoy'];
   const color = ['success', 'danger', 'warning']
   return (
     // Contexto para la navegacion
     <BrowserRouter>
       {/* Controlador de rutas (navegacion) */}
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/home">Inicio</NavLink>
-          </li>
-          <li>
-            <NavLink to="/posts">Publicaciones</NavLink>
-          </li>
-          <li>
-            <NavLink to="/profile">Perfil</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <Nav links={ navigation } />
       <Routes>
         <Route path="/posts" 
           element={ <PostBox text={text} color={color} posts={posts} />} >
