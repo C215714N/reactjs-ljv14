@@ -29,7 +29,7 @@ function App() {
   return (
     <>
     {
-      posts.map(post => <Post title={post.title} content={post.content} val={post.val} text={text} color={color}/>)
+      posts.map( (post,i) => <Post key={"post-"+i} title={post.title} content={post.content} val={post.val} text={text} color={color}/>)
     }
     </>
   );
