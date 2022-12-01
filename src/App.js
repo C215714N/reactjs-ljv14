@@ -1,5 +1,8 @@
-import Post from './Post/Post.js';
+import PostBox from './Post/PostBox';
+import Profile from './Profile/Profile';
+
 import './App.css';
+import { BrowserRouter, Routes, NavLink, Route} from 'react-router-dom';
 
 function App() {
   const posts = [
@@ -27,11 +30,34 @@ function App() {
   const text = ['like', 'love', 'enjoy'];
   const color = ['success', 'danger', 'warning']
   return (
-    <>
-    {
-      posts.map( (post,i) => <Post key={"post-"+i} title={post.title} content={post.content} val={post.val} text={text} color={color}/>)
-    }
-    </>
+    // Contexto para la navegacion
+    <BrowserRouter>
+      {/* Controlador de rutas (navegacion) */}
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/home">Inicio</NavLink>
+          </li>
+          <li>
+            <NavLink to="/posts">Publicaciones</NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile">Perfil</NavLink>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/posts" 
+          element={ <PostBox text={text} color={color} posts={posts} />} >
+        </Route>
+        <Route path='/profile'
+          element={<Profile />} >
+        </Route>
+        <Route>
+
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
