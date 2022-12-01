@@ -23,20 +23,20 @@ class Post extends Component{
     render(){
         const { title, val, content, text, color } = this.props;
         return(
-            <div className='card'>
+            <div className='card col-md p-0'>
                 <h2 className='card-header'>{ title }</h2>
                 <p className='card-body'>{ content }</p>
-                <footer className='card-footer'>
+                <footer className='card-footer row gap-2'>
                     { val.map( (n,i) =>
                         <Button key={'button-'+ i }
-                            gral="mx-1 btn "
+                            gral="col mx-1 btn "
                             regular={"btn-outline-"+color[i]}
                             selected={"btn-"+color[i]}
                             value={n}
                             text={text[i]}/>
                     ) }
                     <button 
-                        className="mx-1 btn btn-outline-primary" 
+                        className="col mx-1 btn btn-outline-primary" 
                         onClick={ this.changeState }>
                         comentar
                     </button>
