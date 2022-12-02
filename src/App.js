@@ -5,7 +5,9 @@ import Nav from './NavBar/Nav';
 import Error from './Error';
 
 // Data
-import { users, posts, navigation } from './database';
+import users from './DB/users.json';
+import posts from './DB/posts.json';
+import navigation from './DB/navigation.json';
 
 import './App.css';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
@@ -20,7 +22,7 @@ function App() {
       <Nav links={ navigation } />
       <Routes>
         <Route exact path="/posts" 
-          element={ <PostBox text={text} color={color} posts={posts} />} >
+          element={ <PostBox text={text} color={color} posts={ posts } />} >
         </Route>
         <Route path='/profile' element={<Profile />} />
         {/* <Route path="/settings" element={ <Settings />} /> */}
