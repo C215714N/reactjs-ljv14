@@ -1,5 +1,6 @@
 // Components
 import PostBox from './Post/PostBox';
+import UsersTable from './Profile/UsersTable';
 import Profile from './Profile/Profile';
 import Nav from './NavBar/Nav';
 import Error from './Error';
@@ -21,6 +22,7 @@ function App() {
       {/* Controlador de rutas (navegacion) */}
       <Nav links={ navigation } />
       <Routes>
+        <Route path="/" element={ <UsersTable users={users}/> } />
         <Route exact path="/posts" 
           element={ <PostBox text={text} color={color} posts={ posts } />} >
         </Route>
