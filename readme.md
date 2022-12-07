@@ -26,7 +26,34 @@ __vite@latest__
 
 ## Componentes
 
-Corresponden a partes dentro de nuestra aplicacion que van a repetirse, poseen _atributos (props)_ y tambien _estados (state)_. Si bien, originalmente, los mismos se puedian declarar mediante clases, a partir de la version __16__ podemos declararlos mediante funciones estandar y funciones flecha.
+Corresponden a partes dentro de nuestra aplicacion que van a repetirse, poseen _atributos (props)_ y tambien _estados (state)_. Si bien, originalmente, los mismos se podian declarar mediante clases, a partir de la version __16__ podemos declararlos mediante funciones estandar y funciones flecha.
 
 * __PROPS__: Son atributos de los componentes, pueden ser heredados por sus elementos padres y son inmutables.
 * __STATE__: Son atributos cuyo valor puede variar en base a algun evento, se declaran en el componente que afectan y pueden ser enviados a sus elementos contenedores.
+
+###
+__Componente de Clase__
+```
+import { Component } from 'react';
+
+class App extends Component {
+  render() {
+    return <h2>ReactJS Developer</h2>;
+  }
+}
+export default App;
+```
+
+__Componente Funcional__
+```
+function App() {
+  return <h2>ReactJS Developer</h2>;
+}
+export default App;
+```
+
+__Componente Funcion Lambda__
+```
+const App = () => <h2>ReactJS Developer</h2>
+export default App;
+```
