@@ -3,34 +3,40 @@ import {
   useState,
   useEffect
 } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom'
 
 // Components
+import Search from './components/Search';
 import Results from './components/Results';
+import Pagination from './components/Pagination';
+import Nav from './components/Nav';
+import About from './components/About';
+
+// MockData
+import data from './models/state.json';
 
 // Styles
 
 function App() {
-  const state = {
-    url: 'https://api.giphy.com/v1/gifs',
-    key: 'LanYkWCgNLIRDm6XZOZWnYH9yZHOProA',
-    limit: 10
-  }
-  const [search, setSearch] = useState('')
   const [results, setResults] = useState({ 
     data:{}, 
     pagination:{}
   })
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [search, setSearch] = useState('')
 
   useEffect(
     () => {
       let type, searching;
       
-      isLoaded ? 
+      search.length >= 3 ? 
       (type = 'search', searching = `&q=${search.replaceAll(" ","+")}`) : 
       (type = 'trending', searching = '')
       
-      const apiURL = `${state.url}/${type}?api_key=${state.key}${searching}&limit=${state.limit}`;
+      const apiURL = `${data[0].url}/${type}?api_key=${data[0].key}${searching}&limit=${data[0].limit || 10}`;
 
       fetch(apiURL)
       .then(response => response.json())
@@ -40,18 +46,18 @@ function App() {
   )
 
   return (
-    <>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input type="search" onInput={ (e) => setSearch(e.target.value)} />
-        <button onClick={() => setIsLoaded(search.length >= 3 ? true : false)}>Buscar</button>
-      </form>
-      <Results data={results.data} word={ search }/>
-      <footer>
-        <p>
-          pagina {results.pagination.offset / 10 + 1} de {Math.ceil(results.pagination.total_count / results.pagination.count)}
-        </p>
-      </footer>
-    </>
+    <BrowserRouter>
+      <Nav/>
+      <Routes>
+        <Route path="/about" element={<About data={data[0].about}/>} />
+        <Route path="*" element={ 
+          <>
+            <Search search={search} setSearch={setSearch}/>
+            <Results data={results.data} word={ search }/>
+            <Pagination data={results.pagination}/>
+          </> } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
