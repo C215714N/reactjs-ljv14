@@ -1,33 +1,60 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const state = {
+    url: 'https://api.giphy.com/v1/gifs',
+    key: 'LanYkWCgNLIRDm6XZOZWnYH9yZHOProA',
+    limit: 10
+  }
+  const [search, setSearch] = useState('')
+  const [results, setResults] = useState({ 
+    data:{}, 
+    pagination:{}
+  })
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [select, setSelect] = useState(false);
+
+  useEffect(
+    () => {
+      let type, searching;
+      
+      isLoaded ? 
+      (type = 'search', searching = `&q=${search.replaceAll(" ","+")}`) : 
+      (type = 'trending', searching = '')
+      
+      const apiURL = `${state.url}/${type}?api_key=${state.key}${searching}&limit=${state.limit}`;
+
+      fetch(apiURL)
+      .then(response => response.json())
+      .then(data => (setResults(data) ) )
+
+    }, [search]
+  )
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input type="search" onInput={ (e) => setSearch(e.target.value)} />
+        <button onClick={() => setIsLoaded(search.length >= 3 ? true : false)}>Buscar</button>
+      </form>
+      <main>
+        <h2>{ isLoaded && search.length >= 3 ? 'Resultados de ' + search : 'Gifs Mas Populares'}</h2>
+        {
+          results.data.length >= 1 ? results.data.map(gif =>
+          <article key={ gif.id }>
+              <img src={select ? gif.images.original.url : gif.images.downsized_still.url} onClick={() => setSelect(!select)} alt="" />
+              <h3>{gif.title}</h3>
+              <p>{gif.username}</p>
+          </article>
+        ) : '' }
+      </main>
+      <footer>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          pagina {results.pagination.offset / 10 + 1} de {Math.ceil(results.pagination.total_count / results.pagination.count)}
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+      </footer>
+    </>
   )
 }
 
