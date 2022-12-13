@@ -1,18 +1,31 @@
 import { useState } from "react";
+// Material-UI (Card)
+import {
+    Card, 
+    CardMedia, 
+    CardContent, 
+    Typography
+} from '@mui/material/';
 
 const Image = (props) => {
     const { data } = props
     const [select, setSelect] = useState(false);
     const imgSRC = select ? data.images.original.url : data.images.downsized_still.url
     return (
-        <article className="card">
-            <img className="w-100"
-                src={ imgSRC } 
+        <Card sx={{flex: '1 0 min(100%, 240px)', m: 1}} variant="outlined">
+            <CardMedia
+                component="img"
+                image={ imgSRC } 
                 alt={data.title} 
-                onClick={ () => setSelect(!select) } />
-            <h3>{data.title}</h3>
-            <p><strong>Author:</strong> {data.username}</p>
-        </article>
+                onClick={ () => setSelect(!select) }/>
+            <CardContent>
+                <Typography variant="h6">{data.title}</Typography>
+                <Typography variant="caption">
+                    <strong>Author:</strong> 
+                    {data.username}
+                </Typography>
+            </CardContent>
+        </Card>
 ) }
 
 export default Image;
