@@ -1,11 +1,9 @@
-[
-    {
-        "url": "https://api.giphy.com/v1/gifs",
-        "key": "LanYkWCgNLIRDm6XZOZWnYH9yZHOProA",
-        "about":{
-            "autor":"Fundacion Pescar",
-            "Colaboracion": "",
-            "fecha": "12 de Diciembre de 2022"
-        }
+{
+    "url": "https://api.giphy.com/v1/gifs",
+    "key": "LanYkWCgNLIRDm6XZOZWnYH9yZHOProA",
+    "about":{
+        "autor":"Fundacion Pescar",
+        "colaboracion": "Este proyecto fue realizado en Colaboracion con los alumnos del curso de ReactJS Developer.",
+        "fecha": "12 de Diciembre de 2022"
     }
-]
+}

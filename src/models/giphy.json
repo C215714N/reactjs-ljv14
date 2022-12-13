@@ -1,7 +1,5 @@
-[
-    {
-        "data":{},
-        "pagination": {}, 
-        "meta": {}
-    }
-]
+{
+    "data":{},
+    "pagination": {}, 
+    "meta": {}
+}
