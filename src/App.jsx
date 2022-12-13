@@ -1,8 +1,10 @@
-// Hooks
+// React-Hooks
 import { 
   useState,
   useEffect
 } from 'react';
+
+// React-Router
 import {
   BrowserRouter,
   Routes,
@@ -20,12 +22,10 @@ import About from './components/About';
 import data from './models/state.json';
 
 // Styles
+import './App.css';
 
 function App() {
-  const [results, setResults] = useState({ 
-    data:{}, 
-    pagination:{}
-  })
+  const [results, setResults] = useState({ data:{}, pagination:{} })
   const [search, setSearch] = useState('')
 
   useEffect(
@@ -36,12 +36,11 @@ function App() {
       (type = 'search', searching = `&q=${search.replaceAll(" ","+")}`) : 
       (type = 'trending', searching = '')
       
-      const apiURL = `${data[0].url}/${type}?api_key=${data[0].key}${searching}&limit=${data[0].limit || 10}`;
+      const apiURL = `${data.url}/${type}?api_key=${data.key}${searching}&limit=${data.limit || 10}`;
 
       fetch(apiURL)
       .then(response => response.json())
       .then(data => (setResults(data) ) )
-
     }, [search]
   )
 
@@ -49,7 +48,7 @@ function App() {
     <BrowserRouter>
       <Nav/>
       <Routes>
-        <Route path="/about" element={<About data={data[0].about}/>} />
+        <Route path="/about" element={<About data={data.about}/>} />
         <Route path="*" element={ 
           <>
             <Search search={search} setSearch={setSearch}/>

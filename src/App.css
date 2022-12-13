@@ -39,3 +39,10 @@
 .read-the-docs {
   color: #888;
 }
+
+.link{
+  padding: .5rem;
+  color: #eee;
+  text-decoration: none;
+  font-family: sans-serif;
+}
